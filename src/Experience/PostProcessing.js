@@ -64,13 +64,13 @@ export default class PostProcessing {
         ssrPass.renderToScreen = true;
         ssrPass.infiniteThick = false;
         ssrPass.maxDistance = 1;
-        ssrPass.thickness = 1;
+        ssrPass.thickness = 0;
         ssrPass.maxDistance = 10;
         ssrPass.distanceAttenuation = false;
         ssrPass.fresnel = true;
         ssrPass.blur = false;
         ssrPass.opacity = 0.18
-
+        // ssrPass.bouncing = true
         ssrPass.tempColor = new THREE.Color(0xffffff)
 
         if (this.debug.active) {

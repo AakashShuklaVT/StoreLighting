@@ -26,8 +26,7 @@ export default class Store {
         this.changeShelfMaterialColor()
         this.changeShelfFrameMaterial()
         this.changeGlassMaterial()
-        this.changeTableMetalMaterial()
-        // this.createReflector()
+        this.changeTableMaterial()
     }
 
     setModel() {
@@ -159,7 +158,7 @@ export default class Store {
                 const newMaterial = child.material.clone()
                 newMaterial.color.set('white')
                 newMaterial.opacity = 1
-                
+
                 newMaterial.transparent = true
                 child.material = newMaterial
             }
@@ -172,15 +171,16 @@ export default class Store {
                 // child.material.color.set('red')
                 child.material.color.set('white')
                 console.log(child.material);
-                
+
                 child.material.metalness = 0
                 child.material.roughness = 1
                 child.material.emissive.set('rgba(196, 196, 196, 0.56)')
-                child.material.emissiveIntensity = 0.5
+                child.material.emissiveIntensity = 0.4
                 child.material.needsUpdate = true
             }
         })
     }
+
     createReflector() {
         this.model.traverse((child) => {
             if (
@@ -215,7 +215,7 @@ export default class Store {
                 mat.roughness = 0.1
                 mat.color.set(0xffffff)
                 mat.envMap = this.resources.items.environmentMap
-                mat.envMapIntensity = 30
+                mat.envMapIntensity = 2
                 mat.needsUpdate = true
 
                 if (this.debug.active) {
@@ -248,10 +248,31 @@ export default class Store {
             if (child.material && child.material.name === "Table_Metal_Material") {
                 child.material.metalness = 1
                 child.material.roughness = 0
-                console.log(child.material);
                 child.material.color.set('rgb(245, 214, 219)')
                 child.material.emissive.set('rgb(0, 0, 0)')
                 child.material.emissiveIntensity = 90
+            }
+
+            if(this.debug.active)
+            {
+                this.debugFolder.add(child.material, 'emissiveIntensity').min(0).max(10).step(0.001).name('Table Metal emmisive')
+            }
+        })
+    }
+
+    changeTableMaterial() {
+        this.model.traverse((child) => {
+            if (child.material && child.material.name === "Table_Base_Material") {
+                child.material.emissive.set('rgb(237, 225, 241)')
+                child.material.emissiveIntensity = 1.5
+                child.material.roughness = 0.1
+                child.material.metalness = 0
+                child.material.envMapIntensity = 2
+
+                if (this.debug.active) {
+                    this.debugFolder.add(child.material, 'emissiveIntensity').min(0).max(10).step(0.001).name('Table emmisive')
+                    this.debugFolder.add(child.material, 'envMapIntensity').min(0).max(10).step(0.001).name('Table envMapIntensity')
+                }
             }
         })
     }

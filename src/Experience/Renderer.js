@@ -15,6 +15,7 @@ export default class Renderer {
     setInstance() {
         this.instance = new THREE.WebGLRenderer({
             canvas: this.canvas,
+            preserveDrawingBuffer: true,
             antialias: true
         })
         // this.instance.toneMapping = THREE.CineonToneMapping
@@ -22,13 +23,13 @@ export default class Renderer {
         // this.instance.toneMapping = THREE.ACESFilmicToneMapping
         // this.instance.toneMapping = THREE.LinearToneMapping
         // this.instance.toneMapping = THREE.NoToneMapping
-        this.instance.toneMappingExposure = 1.2
+        this.instance.toneMappingExposure = 1.45
         this.instance.shadowMap.enabled = true
         this.instance.shadowMap.type = THREE.PCFSoftShadowMap
         this.instance.setClearColor('#211d20')
         this.instance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
-
+        
         if (this.experience.debug.active) {
             const toneMappingOptions = {
                 'NoToneMapping': THREE.NoToneMapping,

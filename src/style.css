@@ -17,3 +17,11 @@ body
     left: 0;
     outline: none;
 }
+
+#capture-button
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+}

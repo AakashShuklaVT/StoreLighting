@@ -70,16 +70,16 @@ export default class Environment
 
     setLights()
     {
-        this.ambientLight = new THREE.AmbientLight('#ffffff', 3.7)
+        this.ambientLight = new THREE.AmbientLight('rgb(240, 240, 240)', 1.7)
         this.scene.add(this.ambientLight)
-
-        this.debugFolder
-            .add(this.ambientLight, 'intensity')
-            .name('ambientLightIntensity')
-            .min(0)
-            .max(10)
-            .step(0.001)
-        this.debugFolder.close()    
+        
+        // this.debugFolder
+        //     .add(this.ambientLight, 'intensity')
+        //     .name('ambientLightIntensity')
+        //     .min(0)
+        //     .max(10)
+        //     .step(0.001)
+        // this.debugFolder.close()    
     }
     
     setEnvironmentMap()
